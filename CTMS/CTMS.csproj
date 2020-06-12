@@ -173,10 +173,38 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006121944344_AddCityAndGovernorateTables.cs" />
+    <Compile Include="Migrations\202006121944344_AddCityAndGovernorateTables.Designer.cs">
+      <DependentUpon>202006121944344_AddCityAndGovernorateTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006121955343_addTablesCityandGovernorate.cs" />
+    <Compile Include="Migrations\202006121955343_addTablesCityandGovernorate.Designer.cs">
+      <DependentUpon>202006121955343_addTablesCityandGovernorate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006121956103_addDataToGovernorateTable.cs" />
+    <Compile Include="Migrations\202006121956103_addDataToGovernorateTable.Designer.cs">
+      <DependentUpon>202006121956103_addDataToGovernorateTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006122006161_addDataToCityTable.cs" />
+    <Compile Include="Migrations\202006122006161_addDataToCityTable.Designer.cs">
+      <DependentUpon>202006122006161_addDataToCityTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006122010529_addSpecialityTable.cs" />
+    <Compile Include="Migrations\202006122010529_addSpecialityTable.Designer.cs">
+      <DependentUpon>202006122010529_addSpecialityTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006122011228_addDataToSpecialityTable.cs" />
+    <Compile Include="Migrations\202006122011228_addDataToSpecialityTable.Designer.cs">
+      <DependentUpon>202006122011228_addDataToSpecialityTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\Governorate.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Speciality.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -252,6 +280,26 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202006121944344_AddCityAndGovernorateTables.resx">
+      <DependentUpon>202006121944344_AddCityAndGovernorateTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006121955343_addTablesCityandGovernorate.resx">
+      <DependentUpon>202006121955343_addTablesCityandGovernorate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006121956103_addDataToGovernorateTable.resx">
+      <DependentUpon>202006121956103_addDataToGovernorateTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006122006161_addDataToCityTable.resx">
+      <DependentUpon>202006122006161_addDataToCityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006122010529_addSpecialityTable.resx">
+      <DependentUpon>202006122010529_addSpecialityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006122011228_addDataToSpecialityTable.resx">
+      <DependentUpon>202006122011228_addDataToSpecialityTable.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

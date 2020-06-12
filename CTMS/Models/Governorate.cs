@@ -5,12 +5,12 @@ using System.Web;
 
 namespace CTMS.Models
 {
-    public class City
+    public class Governorate
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public Governorate Governorate { get; set; }
+        public IEnumerable<City> Cities { get; set; }
 
     }
 }

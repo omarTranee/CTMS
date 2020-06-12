@@ -25,6 +25,10 @@ namespace CTMS.Models
         {
         }
 
+        public DbSet<Governorate> Governorates { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Speciality> Specialities { get; set; } 
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
