@@ -3,12 +3,16 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace CTMS.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public string Name { get; set; }
+
+        public ICollection<Doctor> Doctors { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -27,8 +31,8 @@ namespace CTMS.Models
 
         public DbSet<Governorate> Governorates { get; set; }
         public DbSet<City> Cities { get; set; }
-        public DbSet<Speciality> Specialities { get; set; } 
-
+        public DbSet<Speciality> Specialities { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

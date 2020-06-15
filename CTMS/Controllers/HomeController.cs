@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CTMS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,15 @@ namespace CTMS.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext db;
+        public HomeController()
+        {
+            db = new ApplicationDbContext();
+        }
+        public JsonResult GetCityByID(int ID)
+        {
+            return Json(db.Cities.Where(c => c.Governorate.Id == ID), JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Index()
         {
             return View();

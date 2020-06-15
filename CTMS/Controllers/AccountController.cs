@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CTMS.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using CTMS.ViewModels;
 
 namespace CTMS.Controllers
 {
@@ -17,15 +19,18 @@ namespace CTMS.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db;
 
         public AccountController()
         {
+            db = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+       
         }
 
         public ApplicationSignInManager SignInManager
@@ -157,6 +162,7 @@ namespace CTMS.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -171,6 +177,83 @@ namespace CTMS.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        #region DoctorRegister
+        //
+        // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult DoctorRegister()
+        {
+            var doctorVm = new DoctorFormViewModel {
+            Doctor =new Doctor(),
+            Specialities = db.Specialities.ToList(),
+            Governorates = db.Governorates.ToList(),
+            Cities = db.Cities.ToList()
+            
+            };
+
+            return View(doctorVm);
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DoctorRegister(DoctorFormViewModel model,int cityId)
+        {
+            if (!ModelState.IsValid)
+            {
+                var user = new ApplicationUser()
+                {
+                    UserName = model.registerViewModel.Email,
+                    Email = model.registerViewModel.Email,
+                    Name =model.Doctor.Name
+                };
+                var result = await UserManager.CreateAsync(user, model.registerViewModel.Password);
+                if (result.Succeeded)
+                {
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    await roleManager.CreateAsync(new IdentityRole(RoleName.Doctor));
+                    await UserManager.AddToRoleAsync(user.Id, RoleName.Doctor);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+
+
+
+                    Doctor doctor = new Doctor()
+                    {
+                        Name = model.Doctor.Name,
+                        Phone = model.Doctor.Phone,
+                        Address = model.Doctor.Address,
+                        SpecialityId =model.SpecislityId,
+                        DoctorInformation=model.Doctor.DoctorInformation,
+                        Price = model.Doctor.Price,
+                        GovernorateId=model.GovernorateId,
+                        CityId =cityId,
+                        PhysicianId = user.Id
+                    };
+                    UserManager.AddClaim(user.Id, new Claim(ClaimTypes.GivenName, doctor.Name));
+                    db.Doctors.Add(doctor);
+                    db.SaveChanges();
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        #endregion
+
 
         //
         // GET: /Account/ConfirmEmail

@@ -197,16 +197,35 @@
     <Compile Include="Migrations\202006122011228_addDataToSpecialityTable.Designer.cs">
       <DependentUpon>202006122011228_addDataToSpecialityTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006130224082_AddDoctorTableToDataBase.cs" />
+    <Compile Include="Migrations\202006130224082_AddDoctorTableToDataBase.Designer.cs">
+      <DependentUpon>202006130224082_AddDoctorTableToDataBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006132058104_removeDoctorTable.cs" />
+    <Compile Include="Migrations\202006132058104_removeDoctorTable.Designer.cs">
+      <DependentUpon>202006132058104_removeDoctorTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006132115382_AddDoctorTable.cs" />
+    <Compile Include="Migrations\202006132115382_AddDoctorTable.Designer.cs">
+      <DependentUpon>202006132115382_AddDoctorTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006132258351_addconfintion.cs" />
+    <Compile Include="Migrations\202006132258351_addconfintion.Designer.cs">
+      <DependentUpon>202006132258351_addconfintion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\Governorate.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\Speciality.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DoctorFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -264,6 +283,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\DoctorRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -299,6 +319,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006122011228_addDataToSpecialityTable.resx">
       <DependentUpon>202006122011228_addDataToSpecialityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006130224082_AddDoctorTableToDataBase.resx">
+      <DependentUpon>202006130224082_AddDoctorTableToDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006132058104_removeDoctorTable.resx">
+      <DependentUpon>202006132058104_removeDoctorTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006132115382_AddDoctorTable.resx">
+      <DependentUpon>202006132115382_AddDoctorTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006132258351_addconfintion.resx">
+      <DependentUpon>202006132258351_addconfintion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
