@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -212,6 +213,14 @@
     <Compile Include="Migrations\202006132258351_addconfintion.cs" />
     <Compile Include="Migrations\202006132258351_addconfintion.Designer.cs">
       <DependentUpon>202006132258351_addconfintion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006151542416_AddDoctorImageColumnTodoctorTable.cs" />
+    <Compile Include="Migrations\202006151542416_AddDoctorImageColumnTodoctorTable.Designer.cs">
+      <DependentUpon>202006151542416_AddDoctorImageColumnTodoctorTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006151953078_AddGenderProp.cs" />
+    <Compile Include="Migrations\202006151953078_AddGenderProp.Designer.cs">
+      <DependentUpon>202006151953078_AddGenderProp.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -284,9 +293,17 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\DoctorRegister.cshtml" />
+    <Content Include="Views\Home\GetDoctors.cshtml" />
+    <Content Include="Views\Doctors\Create.cshtml" />
+    <Content Include="Views\Doctors\Delete.cshtml" />
+    <Content Include="Views\Doctors\Details.cshtml" />
+    <Content Include="Views\Doctors\Edit.cshtml" />
+    <Content Include="Views\Doctors\Index.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -331,6 +348,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006132258351_addconfintion.resx">
       <DependentUpon>202006132258351_addconfintion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006151542416_AddDoctorImageColumnTodoctorTable.resx">
+      <DependentUpon>202006151542416_AddDoctorImageColumnTodoctorTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006151953078_AddGenderProp.resx">
+      <DependentUpon>202006151953078_AddGenderProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

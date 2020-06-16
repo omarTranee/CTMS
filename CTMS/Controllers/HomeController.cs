@@ -14,20 +14,50 @@ namespace CTMS.Controllers
         {
             db = new ApplicationDbContext();
         }
+
+        #region SearchOperation
+
+        public ActionResult Index()
+        {
+            ViewBag.GovernorateName = db.Governorates.ToList();
+            ViewBag.SpecialityName = db.Specialities.ToList();
+            return View();
+        }
         public JsonResult GetCityByID(int ID)
         {
             return Json(db.Cities.Where(c => c.Governorate.Id == ID), JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Index()
+
+        [HttpPost]
+        //public JsonResult GetDoctors(int stateId = -1, int cityId = -1, int categoryid = -1)
+        public ActionResult GetDoctors(int stateId = -1, int cityId = -1, int categoryid = -1)
+
         {
-            return View();
+
+            //return $" - City  : {cityId} co- State : {stateId}  -Categoery : {categoryid}";
+            //return Json(db.Doctors.Where(d => d.Speciality.Id == categoryid && d.City.Id == cityId).ToList());
+            ViewBag.GoveName = db.Governorates.SingleOrDefault(g => g.Id == stateId);
+            ViewBag.CityName = db.Cities.SingleOrDefault(g => g.Id == cityId);
+            ViewBag.SpecialityName = db.Specialities.SingleOrDefault(g => g.Id == categoryid);
+
+            return View(db.Doctors.Where(d => d.Speciality.Id == categoryid && d.City.Id == cityId).ToList());
+            //return Json(0);
         }
-
-        public ActionResult About()
+        #endregion
+        public ActionResult Details(int DoctorID)
         {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+            var doctor = db.Doctors.Find(DoctorID);
+            ViewBag.GoveName = db.Governorates.SingleOrDefault(c=>c.Id== doctor.GovernorateId);
+            ViewBag.CityName = db.Cities.SingleOrDefault(c => c.Id == doctor.CityId);
+            ViewBag.SpecialityName = db.Cities.SingleOrDefault(c => c.Id == doctor.SpecialityId);
+
+
+
+            // السيشن دا ممكن استخدمه عشان ابعتت الايدي بتاع الدكتور مع التقديم ومع اضافت الكومنات
+            Session["DoctorId"] = DoctorID;
+
+            return View(doctor);
         }
 
         public ActionResult Contact()

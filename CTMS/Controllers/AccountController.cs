@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using CTMS.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using CTMS.ViewModels;
+using System.IO;
 
 namespace CTMS.Controllers
 {
@@ -199,10 +200,13 @@ namespace CTMS.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DoctorRegister(DoctorFormViewModel model,int cityId)
+        public async Task<ActionResult> DoctorRegister(DoctorFormViewModel model,int cityId, HttpPostedFileBase upload)
         {
+            model.registerViewModel.Name = model.Doctor.Name;
             if (!ModelState.IsValid)
             {
+                model.registerViewModel.Name = model.Doctor.Name;
+               
                 var user = new ApplicationUser()
                 {
                     UserName = model.registerViewModel.Email,
@@ -219,13 +223,18 @@ namespace CTMS.Controllers
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
 
+                    string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
+                    upload.SaveAs(path);
+                    model.Doctor.DoctorImage = upload.FileName;
 
 
                     Doctor doctor = new Doctor()
                     {
                         Name = model.Doctor.Name,
                         Phone = model.Doctor.Phone,
+                        DoctorImage= model.Doctor.DoctorImage,
                         Address = model.Doctor.Address,
+                        Gender =model.Doctor.Gender,
                         SpecialityId =model.SpecislityId,
                         DoctorInformation=model.Doctor.DoctorInformation,
                         Price = model.Doctor.Price,
@@ -233,6 +242,7 @@ namespace CTMS.Controllers
                         CityId =cityId,
                         PhysicianId = user.Id
                     };
+
                     UserManager.AddClaim(user.Id, new Claim(ClaimTypes.GivenName, doctor.Name));
                     db.Doctors.Add(doctor);
                     db.SaveChanges();

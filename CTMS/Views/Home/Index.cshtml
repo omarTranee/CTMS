@@ -1,31 +1,76 @@
-﻿@{
+﻿@using CTMS.Models
+@{
     ViewBag.Title = "Home Page";
 }
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<script>
+    $(function () {
+
+
+        $("#St").change(function () {
+            $.get("/Home/GetCityByID",
+                { ID: $("#St").val() },
+                function (data) {
+                    $("#city").empty();
+                    $.each(data,
+                        function (index, row) {
+                            $("#city").append(`<option value="${row.Id}">${row.Name}</option>`);
+                        });
+                });
+        });
+    });
+</script>
+
+@using (Html.BeginForm("GetDoctors", "Home", FormMethod.Post))
+{
+
+    <div class="jumbotron">
+        <h1>Clinic Time Managment System</h1>
+        <p class="lead">CTMS is a free website for Booking  Appointment At Doctor that you choose as you want </p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div class="row">
+        <div class="col-md-3">
+            <p>SpecialityList</p>
+
+            <select class="form-control" id="CaID" name="categoryid">
+                <option value="-1">Choose Category </option>
+                @foreach (var count in (List<Speciality>)ViewBag.SpecialityName)
+                {
+                    <option value="@count.Id">@count.Name </option>
+
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <p>GovernorateList</p>
+
+            <select class="form-control" id="St" name="stateId">
+                <option value="-1">Choose Governorate </option>
+                @foreach (var count in (List<Governorate>)ViewBag.GovernorateName)
+                {
+
+                    <option value="@count.Id">@count.Name</option>
+
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <p>CityList</p>
+            <select id="city" class="form-control" name="cityId">
+                <option value="-1">Choose area</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <p>Click Here</p>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Get DoCtors" />
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+
+}

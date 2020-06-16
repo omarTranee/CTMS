@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CTMS.Models.Doctor>
+@using CTMS.Models
+@{
+    ViewBag.Title = "GetDoctors";
+}
+
+<h2>GetDoctors</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<h2>Search</h2>
+
+
+<div class="panel panel-default">
+    <h3 class="panel panel-default">@ViewBag.GoveName.Name > @ViewBag.CityName.Name > @ViewBag.SpecialityName.Name</h3>
+    <br/>
+ 
+    <div class="row">
+
+   
+        @foreach (var subitem in Model)
+        {
+
+        <div class="col-md-12 thumbnail">
+            <div class="col-md-3" style="width: 19%">
+                <img src="~/Uploads/@subitem.DoctorImage" style="margin-left:5px;height: 138px;width: 132px;" />
+
+
+            </div>
+            <div class="col-md-3" style="width: 50%">
+
+                <h3 style="margin-top: 2px;">@subitem.Name</h3>
+
+                <p>@subitem.DoctorInformation</p>
+            </div>
+            <div class="col-md-3">
+
+                <div class="form-group">
+                    @*<img src="~/Uploads/@subitem.JobImage" style="margin-left:20px; margin-botton:30px; height:380px;" />*@
+
+                    <p>Button for Appoinment</p>
+                    <br/>
+                    @Html.ActionLink("التفاصيل", "Details", new { DoctorID = subitem.Id }, new { @class = "btn btn-primary" })
+
+                </div>
+            </div>
+            
+            @*<img src="~/Uploads/@subitem.JobImage" style="margin-left:20px; margin-botton:30px; height:380px;" />*@
+
+            @* دا هنا هيكون زرار مكان الحجز انه المفروض بياخد الاي دي بتاع العيادة وبينقلك عليه *@
+            @*@Html.ActionLink("التفاصيل", "Details", new { JobId = subitem.Id }, new { @class = "btn btn-primary" })*@
+        </div>
+
+        }
+    </div>
+</div>

@@ -27,7 +27,7 @@
         });
     });
 </script>
-@using (Html.BeginForm("DoctorRegister", "Account", FormMethod.Post, new { @class = "form-horizontal form-label-left", autocomplete = "off" }))
+@using (Html.BeginForm("DoctorRegister", "Account", FormMethod.Post, new { @class = "form-horizontal form-label-left", autocomplete = "off",enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Doctor.Id)
@@ -35,6 +35,7 @@
     <h4>DoctorFormViewModel</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
 
     <div class="form-group">
         @Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -50,6 +51,21 @@
             @Html.ValidationMessageFor(model => model.registerViewModel.Email, "", new { @class = "text-danger" })
         </div>
     </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Doctor.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.Doctor.Gender, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Doctor.Gender, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Doctor.DoctorImage, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="upload" />
+            @Html.ValidationMessageFor(model => model.Doctor.DoctorImage, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
     <div class="form-group">
         @Html.LabelFor(model => model.Doctor.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">

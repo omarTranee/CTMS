@@ -5,7 +5,7 @@ namespace CTMS.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
-        [Required]
+        [Required]  
         [Display(Name = "Email")]
         public string Email { get; set; }
     }

@@ -12,6 +12,6 @@ namespace CTMS.Models
         Male = 1,
 
         [Description("Female")]
-        Female
+        Female =2 
     }
 }

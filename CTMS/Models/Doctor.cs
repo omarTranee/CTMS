@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -9,8 +10,12 @@ namespace CTMS.Models
     public class Doctor
     {
         public int Id { get; set; }
+
+        [DisplayName("Your Image")]
+        public string DoctorImage { get; set; }
         [Required]
         public string Name { get; set; }
+        public Gender Gender { get; set; }
         [Required]
         [StringLength(11)]
         public string Phone { get; set; }
