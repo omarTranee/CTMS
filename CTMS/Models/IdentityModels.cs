@@ -13,6 +13,7 @@ namespace CTMS.Models
         public string Name { get; set; }
 
         public ICollection<Doctor> Doctors { get; set; }
+        public ICollection<Patient> Patients { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -33,6 +34,7 @@ namespace CTMS.Models
         public DbSet<City> Cities { get; set; }
         public DbSet<Speciality> Specialities { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Patient> Patients { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

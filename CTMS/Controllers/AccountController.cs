@@ -157,13 +157,28 @@ namespace CTMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,Name=model.Name };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    await roleManager.CreateAsync(new IdentityRole(RoleName.Patient));
+                    await UserManager.AddToRoleAsync(user.Id, RoleName.Patient);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
+
+                    Patient patient = new Patient()
+                    {
+                        Name = model.Name,
+                        Patient_Id=user.Id,
+                        PatientEmail=model.Email,
+                        BirthDate=DateTime.Now
+                    };
+
+                    UserManager.AddClaim(user.Id, new Claim(ClaimTypes.GivenName, patient.Name));
+                    db.Patients.Add(patient);
+                    db.SaveChanges();
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -235,6 +250,7 @@ namespace CTMS.Controllers
                         DoctorImage= model.Doctor.DoctorImage,
                         Address = model.Doctor.Address,
                         Gender =model.Doctor.Gender,
+                        DoctorEmail=model.registerViewModel.Email,
                         SpecialityId =model.SpecislityId,
                         DoctorInformation=model.Doctor.DoctorInformation,
                         Price = model.Doctor.Price,

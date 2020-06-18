@@ -17,7 +17,7 @@ namespace CTMS.Controllers
         // GET: Doctors
         public ActionResult Index()
         {
-            var doctors = db.Doctors.Include(d => d.City).Include(d => d.Governorate).Include(d => d.Physician).Include(d => d.Speciality);
+            var doctors = db.Doctors.Include(d => d.City).Include(d => d.Governorate).Include(d => d.Speciality);
             return View(doctors.ToList());
         }
 
@@ -51,7 +51,7 @@ namespace CTMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,DoctorImage,Name,Gender,Phone,Address,Price,DoctorInformation,SpecialityId,PhysicianId,CityId,GovernorateId")] Doctor doctor)
+        public ActionResult Create([Bind(Include = "Id,DoctorImage,Name,Gender,Phone,Address,Price,DoctorInformation,SpecialityId,CityId,GovernorateId")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace CTMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,DoctorImage,Name,Gender,Phone,Address,Price,DoctorInformation,SpecialityId,PhysicianId,CityId,GovernorateId")] Doctor doctor)
+        public ActionResult Edit([Bind(Include = "Id,DoctorImage,Name,Gender,Phone,Address,Price,DoctorInformation,PhysicianId,CityId,GovernorateId")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {

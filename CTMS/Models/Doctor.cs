@@ -24,6 +24,8 @@ namespace CTMS.Models
         public string Address { get; set; }
 
         public int Price { get; set; }
+        public string DoctorEmail { get; set; }
+
 
         public string DoctorInformation { get; set; }
         [Required]
