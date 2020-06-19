@@ -176,7 +176,7 @@ namespace CTMS.Controllers
                         BirthDate=DateTime.Now
                     };
 
-                    UserManager.AddClaim(user.Id, new Claim(ClaimTypes.GivenName, patient.Name));
+                    UserManager.AddClaim(user.Id, new Claim(ClaimTypes.GivenName,user.Name));
                     db.Patients.Add(patient);
                     db.SaveChanges();
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -217,16 +217,16 @@ namespace CTMS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DoctorRegister(DoctorFormViewModel model,int cityId, HttpPostedFileBase upload)
         {
-            model.registerViewModel.Name = model.Doctor.Name;
+            //model.registerViewModel.Name = model.Doctor.Name;
             if (!ModelState.IsValid)
             {
-                model.registerViewModel.Name = model.Doctor.Name;
+                //model.registerViewModel.Name = model.Doctor.Name;
                
                 var user = new ApplicationUser()
                 {
                     UserName = model.registerViewModel.Email,
                     Email = model.registerViewModel.Email,
-                    Name =model.Doctor.Name
+                    Name =model.registerViewModel.Name
                 };
                 var result = await UserManager.CreateAsync(user, model.registerViewModel.Password);
                 if (result.Succeeded)
@@ -245,7 +245,7 @@ namespace CTMS.Controllers
 
                     Doctor doctor = new Doctor()
                     {
-                        Name = model.Doctor.Name,
+                        Name = model.registerViewModel.Name,
                         Phone = model.Doctor.Phone,
                         DoctorImage= model.Doctor.DoctorImage,
                         Address = model.Doctor.Address,
@@ -259,7 +259,7 @@ namespace CTMS.Controllers
                         PhysicianId = user.Id
                     };
 
-                    UserManager.AddClaim(user.Id, new Claim(ClaimTypes.GivenName, doctor.Name));
+                    UserManager.AddClaim(user.Id, new Claim(ClaimTypes.GivenName, user.Name));
                     db.Doctors.Add(doctor);
                     db.SaveChanges();
 

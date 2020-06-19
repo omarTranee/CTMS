@@ -4,11 +4,12 @@
 @if (Request.IsAuthenticated)
 {
 
-    //var identity = (ClaimsIdentity) User.Identity;
+    //var identity = (ClaimsIdentity)User.Identity;
     //var name = identity.FindFirstValue(ClaimTypes.GivenName) ?? identity.GetUserName();
-         var db = new ApplicationDbContext();
-        var UserId = User.Identity.GetUserId();
-        var CurrentUser = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+
+    var db = new ApplicationDbContext();
+    var UserId = User.Identity.GetUserId();
+    var CurrentUser = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
 
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {

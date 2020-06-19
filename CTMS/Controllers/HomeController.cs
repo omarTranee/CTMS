@@ -1,4 +1,5 @@
 ﻿using CTMS.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,46 @@ namespace CTMS.Controllers
 
             return View(doctor);
         }
+
+        #region AppointmentActions
+
+        // GET: Appointments/Create
+        public ActionResult CreateAppointment()
+        {
+            //ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "DoctorImage");
+            //ViewBag.PatientId = new SelectList(db.Patients, "Id", "Name");
+            return View();
+        }
+
+        // POST: Appointments/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // شوف هل يقصد بالبرامتر اللي ف الانكلود هل يقصد النام اللي ف 
+        // html helper
+        public ActionResult CreateAppointment( Appointment appointment)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var patientId = db.Patients.SingleOrDefault(p => p.Patient_Id == userId);
+            appointment.PatientId = patientId.Id;
+            appointment.DoctorId = (int)Session["DoctorId"];
+            if (ModelState.IsValid)
+            {
+                db.Appointments.Add(appointment);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            //ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "DoctorImage", appointment.DoctorId);
+            //ViewBag.PatientId = new SelectList(db.Patients, "Id", "Name", appointment.PatientId);
+
+            return View(appointment);
+        }
+
+
+        #endregion
 
         public ActionResult Contact()
         {

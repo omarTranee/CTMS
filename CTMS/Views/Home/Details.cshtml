@@ -2,6 +2,7 @@
 @using CTMS.Models
 @{
     ViewBag.Title = "Details";
+    
 }
 
 <h2>Details</h2>
@@ -95,6 +96,6 @@
 </div>
 <p>
     @* دا هو زرار الحجز اللي هينفذ كود الحجز اوي ينقلك لصفحة الحجز  *@
-    @Html.ActionLink("التقدم الي وظيفة ", "Index","Home",routeValues: null,htmlAttributes: new {  @class = "btn btn-success" })  |
+    @Html.ActionLink("Booking ", "CreateAppointment","Home",routeValues: null,htmlAttributes: new {  @class = "btn btn-success" })  |
     @Html.ActionLink("Back to List", "Index")
 </p>

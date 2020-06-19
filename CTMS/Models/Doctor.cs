@@ -41,5 +41,9 @@ namespace CTMS.Models
         public int GovernorateId { get; set; }
         public Governorate Governorate { get; set; }
 
+        public int AppointmentId { get; set; }
+        public IEnumerable<Appointment> Appointments { get; set; }
+
+
     }
 }
