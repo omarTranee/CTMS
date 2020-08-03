@@ -3,81 +3,106 @@
 @{
     ViewBag.Title = "Create";
 }
+    <div>
 
-<h2>Create</h2>
+        <link href="~/Content/all.min.css" rel="stylesheet" />
+
+        <link href="~/Content/fontawesome.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <link href="~/Content/style3.css" rel="stylesheet" />
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Appointment</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.BookingDate, htmlAttributes: new { @class = "control-label col-md-2 date" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BookingDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BookingDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        @*<div class="form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12">Date<span class="required">*</span></label>
-            <div class="col-md-9 col-sm-9 col-xs-12">
-                @Html.TextBoxFor(m => m.Date, new { @class = "form-control date" })
-                @Html.ValidationMessageFor(m => m.Date)
-            </div>
-        </div>*@
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.NumberInQueue, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NumberInQueue, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NumberInQueue, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.PatientEmail, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PatientEmail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PatientEmail, "", new { @class = "text-danger" })
-            </div>
+        <div class="background">
+            <p class="pa">
+                We Care for Your <br>
+                Health Every Moment
+            </p>
         </div>
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Paid, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.Paid)
-                        @Html.ValidationMessageFor(model => model.Paid, "", new { @class = "text-danger" })
+        <div class="appoinment-area">
+            <div class=" Servicing">
+                <h1>
+                    Servicing Hours
+                </h1>
+                <p>
+                    We with you 24 hours <br>
+                    You can book our service and wait your appointment<br>
+                    This our doctor's avaliable time.
+                </p>
+                <ul class="time-list">
+                    <li class="day and time">
+                        <span>Saturday-Monday</span>
+                        <span class="align">08.00 am - 10.00 pm</span>
+                    </li>
+                    <li class="day and time">
+                        <span>Tuesday-Thursday</span>
+                        <span class="align">01.00 pm - 10.00 pm</span>
+                    </li>
+                    <li class="day and time">
+                        <span>Friday</span>
+                        <span class="align1">12.00 pm - 03.00 pm</span>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="booking">
+                @using (Html.BeginForm(new { @class = "form-wrap" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h3 class="h3">Book an Appointment</h3>
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.BookingDate, htmlAttributes: new { @class = "control-label col-md-3 date" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.BookingDate, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BookingDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PatientEmail, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PatientEmail, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PatientEmail, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Confirm Booking" class="btn primary-btn" />
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>*@
+                }
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.DoctorId, "DoctorId", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("DoctorId", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.DoctorId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PatientId, "PatientId", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("PatientId", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.PatientId, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                @*<form class="form-wrap">
+                    <h3 class="h3">Book an Appointment</h3>
+                    <input type="text" class="form-control" name="name" placeholder="Patient Name" onkeyup="lettersOnly(this)" required>
+                    <input type="tel" class="form-control" name="phone" placeholder="Phone " onkeyup="numbersOnly(this)" size="11" maxlength="11" minlength="11" required>
+                    <input type="email" class="form-control" name="email" placeholder="Email Address">
+                    <input id="flatpickr" name="dop" class="dates form-control" placeholder="Date of Birth" type="text" required>
+                    <div class="form-select" id="service-select">
+                        <select>
+                            <option data-display="">Disease Type</option>
+                            <option value="1">Type One</option>
+                            <option value="2">Type Two</option>
+                            <option value="3">Type Three</option>
+                            <option value="4">Type Four</option>
+                        </select>
+                    </div>
+                    <input id="flatpickr" class="dates form-control" placeholder="appointment Date" type="text" required>
+                    <textarea name="messege" class="" rows="5" placeholder="Messege"></textarea>
+                    <button class="primary-btn">Confirm Booking</button>
+                </form>*@
             </div>
         </div>
+
+
     </div>
-}
+
+
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 <div>
     @Html.ActionLink("Back to List", "Index")

@@ -1,0 +1,8 @@
+﻿.background {
+    background: url("../Uploads/pressure.jpg'") repeat;
+    height: 500px;
+    width: 1260px;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}

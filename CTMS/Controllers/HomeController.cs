@@ -51,7 +51,7 @@ namespace CTMS.Controllers
             var doctor = db.Doctors.Find(DoctorID);
             ViewBag.GoveName = db.Governorates.SingleOrDefault(c=>c.Id== doctor.GovernorateId);
             ViewBag.CityName = db.Cities.SingleOrDefault(c => c.Id == doctor.CityId);
-            ViewBag.SpecialityName = db.Cities.SingleOrDefault(c => c.Id == doctor.SpecialityId);
+            ViewBag.SpecialityName = db.Specialities.SingleOrDefault(c => c.Id == doctor.SpecialityId);
 
 
 
@@ -81,10 +81,11 @@ namespace CTMS.Controllers
         public ActionResult CreateAppointment( Appointment appointment)
         {
             var userId = User.Identity.GetUserId();
-
+            int i = 1;
             var patientId = db.Patients.SingleOrDefault(p => p.Patient_Id == userId);
             appointment.PatientId = patientId.Id;
             appointment.DoctorId = (int)Session["DoctorId"];
+            appointment.NumberInQueue = i++;
             if (ModelState.IsValid)
             {
                 db.Appointments.Add(appointment);
@@ -102,6 +103,12 @@ namespace CTMS.Controllers
         #endregion
 
         public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+        public ActionResult About()
         {
             ViewBag.Message = "Your contact page.";
 

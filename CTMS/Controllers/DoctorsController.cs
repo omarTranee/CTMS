@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CTMS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CTMS.Controllers
 {
@@ -33,6 +34,14 @@ namespace CTMS.Controllers
             {
                 return HttpNotFound();
             }
+            return View(doctor);
+        }
+        // Doctor information from dash board
+        public ActionResult DoctorDetails()
+        {
+            var UserId = User.Identity.GetUserId();
+      
+            var doctor = db.Doctors.SingleOrDefault(p => p.PhysicianId == UserId);
             return View(doctor);
         }
 

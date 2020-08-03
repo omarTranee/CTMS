@@ -1,101 +1,248 @@
 ﻿@model CTMS.Models.Doctor
 @using CTMS.Models
-@{
-    ViewBag.Title = "Details";
-    
-}
 
-<h2>Details</h2>
+    <div>
 
-<div>
-    <h4>Doctor</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayName("City Name")
-        </dt>
+        <link href="~/Content/all.min.css" rel="stylesheet" />
 
-        <dd>
-           @ViewBag.CityName.Name
-        </dd>
+        <link href="~/Content/fontawesome.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <dt>
-            @Html.DisplayName("Governorate Name")
-        </dt>
+        <link href="~/Content/style2.css" rel="stylesheet" />
+        <div class="container_1">
+            <div class="row_">
 
-        <dd>
-            @ViewBag.GoveName.Name
-        </dd>
+                <img class="avatar" src="~/Uploads/@Html.DisplayFor(model => model.DoctorImage)" alt="DOC.Picture">
+            </div>
+            <div class="profile__header">
+                <h1>@Model.Name</h1>
+                <h3>@ViewBag.SpecialityName.Name</h3>
+                <p class="text-muted">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit<br>
+                    Sed do eiusmod tempor incididunt ut labore et dolore <br> magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud <br> exercitation ullamco
+                    laboris nisi ut aliquip ex ea<br> commodo consequat.
+                </p>
+            </div>
 
-        <dt>
-            @Html.DisplayName("Speciality Name")
-        </dt>
+            <!--Doctor info -->
+            <ul class="ul1">
+                <li><i class="material-icons" style="color:red">mail</i> <a href="mailto:info@webmail.com">info@webmail.com</a></li>
+                <li class="li1"><i class="fa fa-phone" style="font-size:18px; color:red"> </i>  <a href="tel:876864764764">+@Model.Phone</a></li>
+            </ul>	
+            <ul class="ul2">
+                <li class="li1"><i class="fa fa-map-marker-alt" style="font-size:18px; color:red"> </i>  <a href="tel:876864764764">@Model.Address</a></li>
+                <li class="li1"><i class="fa fa-money-bill-wave" style="font-size:18px; color:red"> </i>  <a href="tel:876864764764">@Model.Price L.E</a></li>
 
-        <dd>
-            @ViewBag.SpecialityName.Name
-        </dd>
+            </ul>
+            <div class="col-xl-4_1">
+                <div class="sidebar-wrap">
+                    <div class="award-widget">
+                        <h4 class="widget-title">Honors and Awards</h4>
+                        <div class="award-boxs">
+                            <div class="single-award-box">
+                                <div class="icon">
+                                    <i class='fas fa-award' style='font-size:48px;color:red'></i>
+                                </div>
+                                <h5 class="title">
+                                    <span>2020</span> World Health Oraganized
+                                    Winning Award
+                                </h5>
+                            </div>
+                            <div class="single-award-box">
+                                <div class="icon">
+                                    <i class='fas fa-award' style='font-size:48px;color:red'></i>
+                                </div>
+                                <h5 class="title">
+                                    <span>2018</span> Miranda Halim Troma
+                                    Winning Award
+                                </h5>
+                            </div>
+                            <div class="single-award-box">
+                                <div class="icon">
+                                    <i class='fas fa-award' style='font-size:48px;color:red'></i>
+                                </div>
+                                <h5 class="title">
+                                    <span>2017</span> Romada Hilixer Brownid
+                                    Winning Award
+                                </h5>
+                            </div>
+                            <div class="single-award-box">
+                                <div class="icon">
+                                    <i class='fas fa-award' style='font-size:48px;color:red'></i>
+                                </div>
+                                <h5 class="title">
+                                    <span>2016</span> Corona Virus Expert
+                                    Winning Award
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-details-content">
+                        <div class="div2">
+                            <div class="info">
+                                <h3>Make an Online Appointment</h3>
+                                <p class="pa1">Esteem spirit temper too say adieus.</p>
+                                <p class="pa1">
+                                    Far far away, behind the word mountains,<br> far from the countries Vokalia and Consonantia,<br>
+                                    there live the blind texts.<br> Separated they live in Bookmarksgrove.
+                                </p><br>
+                            </div>
+                            @Html.ActionLink("Make an appointment", "CreateAppointment", "Home", routeValues: null, htmlAttributes: new { @class = " btn info_button" })
+                            @*<div class="info_button">
+                            <a href="./booking.html" class="btn">Make an appointment</a>
+                        </div>*@
+                        </div>
+                    </div>
+                </div>
+                <!--------------------------skils------------------------------------------------>
+                <div class="skills-widget">
+                    <h4 class="widget-title">My Skills</h4>
+                    <div class="single-skill">
+                        <div class="bar-title">
+                            <h4><i class='fas fa-check' style='font-size:36px;color:red'></i> Teeth Whitening</h4>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar"
+                                 style="width: 80%; visibility: visible; animation-duration: 1s; animation-delay: 0.5s; animation-name: slideInLeft;"
+                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" data-wow-duration="1s" data-wow-delay=".5s">
+                                <span>80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-skill">
+                        <div class="bar-title">
+                            <h4><i class='fas fa-check' style='font-size:36px;color:red'></i> Oncology</h4>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar wow " role="progressbar"
+                                 style="width: 42%; visibility: visible; animation-duration: 1s; animation-delay: 0.5s; animation-name: slideInLeft;"
+                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" data-wow-duration="1s" data-wow-delay=".5s">
+                                <span>42%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-skill">
+                        <div class="bar-title">
+                            <h4><i class='fas fa-check' style='font-size:36px;color:red' ;></i> Gynecology</h4>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar " role="progressbar"
+                                 style="width: 90%; visibility: visible; animation-duration: 1s; animation-delay: 0.5s; animation-name: slideInLeft;"
+                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" data-wow-duration="1s" data-wow-delay=".5s">
+                                <span>90%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-skill">
+                        <div class="bar-title">
+                            <h4><i class='fas fa-check' style='font-size:36px;color:red'></i> Rehabilitation</h4>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar " role="progressbar"
+                                 style="width: 51%; visibility: visible; animation-duration: 1s; animation-delay: 0.5s; animation-name: slideInLeft;"
+                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" data-wow-duration="1s" data-wow-delay=".5s">
+                                <span>51%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DoctorImage)
-        </dt>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <script src="./script/script2.js"></script>
+        </div>
+        @*<div>
+           
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("City Name")
+                </dt>
 
-        <dd>
-            <img src="~/Uploads/@Html.DisplayFor(model => model.DoctorImage)" style="margin-left:5px;height: 138px;width: 132px;" />
+                <dd>
+                    @ViewBag.CityName.Name
+                </dd>
 
-        </dd>
+                <dt>
+                    @Html.DisplayName("Governorate Name")
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+                <dd>
+                    @ViewBag.GoveName.Name
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                <dt>
+                    @Html.DisplayName("Speciality Name")
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
+                <dd>
+                    @ViewBag.SpecialityName.Name
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DoctorImage)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
+                <dd>
+                    <img src="~/Uploads/@Html.DisplayFor(model => model.DoctorImage)" style="margin-left:5px;height: 138px;width: 132px;" />
 
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Gender)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DoctorInformation)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DoctorInformation)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Phone)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @* دا هو زرار الحجز اللي هينفذ كود الحجز اوي ينقلك لصفحة الحجز  *@
-    @Html.ActionLink("Booking ", "CreateAppointment","Home",routeValues: null,htmlAttributes: new {  @class = "btn btn-success" })  |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DoctorInformation)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DoctorInformation)
+                </dd>
+
+            </dl>
+        </div>*@
+        @*<p>
+             دا هو زرار الحجز اللي هينفذ كود الحجز اوي ينقلك لصفحة الحجز  
+            @Html.ActionLink("Booking ", "CreateAppointment", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-success" })  |
+            @Html.ActionLink("Back to List", "Index")
+        </p>*@
