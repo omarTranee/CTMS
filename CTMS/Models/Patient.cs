@@ -46,5 +46,6 @@ namespace CTMS.Models
         public int AppointmentId { get; set; }
         public IEnumerable<Appointment> Appointments { get; set; }
 
+
     }
 }

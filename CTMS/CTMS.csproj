@@ -172,6 +172,7 @@
     <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PatientPicController.cs" />
     <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -260,6 +261,14 @@
     <Compile Include="Migrations\202006190826431_ModifyAppointMent.Designer.cs">
       <DependentUpon>202006190826431_ModifyAppointMent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008041624107_update.cs" />
+    <Compile Include="Migrations\202008041624107_update.Designer.cs">
+      <DependentUpon>202008041624107_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008041801327_AddPatientPicTable.cs" />
+    <Compile Include="Migrations\202008041801327_AddPatientPicTable.Designer.cs">
+      <DependentUpon>202008041801327_AddPatientPicTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
@@ -271,6 +280,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\PatientPic.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\Speciality.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -365,6 +375,11 @@
     <Content Include="Scripts\sb-admin-2.min.js" />
     <Content Include="Scripts\script2.js" />
     <Content Include="Images\pressure.jpg" />
+    <Content Include="Uploads\Doc1.jpg" />
+    <Content Include="Uploads\Doc2.jpg" />
+    <Content Include="Uploads\Doc3.jpg" />
+    <Content Include="Uploads\Doca1.jpg" />
+    <Content Include="Uploads\Doca2.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -376,7 +391,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\DoctorLayOut.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -421,10 +436,17 @@
     <Content Include="Views\Appointments\GetAppointmentForDoctors.cshtml" />
     <Content Include="Views\Shared\_Dashboard.cshtml" />
     <Content Include="Views\Doctors\DoctorDetails.cshtml" />
+    <Content Include="Views\PatientPic\AddNewPic.cshtml" />
+    <Content Include="Views\Doctors\DoctorEdit.cshtml" />
+    <Content Include="Views\Home\Chart.cshtml" />
+    <Content Include="Views\Home\Tables.cshtml" />
+    <Content Include="Views\Home\PatientLayOut.cshtml" />
+    <Content Include="Views\Appointments\DetailsPatient.cshtml" />
+    <Content Include="Views\Patients\Complete.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AppFile\Images\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -502,6 +524,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006190826431_ModifyAppointMent.resx">
       <DependentUpon>202006190826431_ModifyAppointMent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008041624107_update.resx">
+      <DependentUpon>202008041624107_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008041801327_AddPatientPicTable.resx">
+      <DependentUpon>202008041801327_AddPatientPicTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

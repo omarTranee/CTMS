@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace CTMS.Controllers
 {
+    [Authorize]
     public class AppointmentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -88,7 +89,8 @@ namespace CTMS.Controllers
             // دي هتبقي العيادات
             var appointments = db.Appointments.Include(a=>a.Patient).Where(a => a.DoctorId  == doctorId.Id).ToList();
 
-            return View(appointments);
+            //return View(appointments);
+            return PartialView(appointments);
         }
         #endregion
         // GET: Appointments/Edit/5
@@ -160,6 +162,19 @@ namespace CTMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public ActionResult DetailsPatient(int id)
+        {
+            var appointment = db.Appointments.Where(a => a.Id == id).SingleOrDefault();
+            var patientId = appointment.PatientId;
+            var patient = db.Patients.Where(p => p.Id == patientId).SingleOrDefault();
+            ViewBag.CountryName = db.Governorates.SingleOrDefault(g => g.Id == patient.GovernorateId);
+            ViewBag.CityName = db.Cities.SingleOrDefault(c => c.Id == patient.CityId);
+
+
+            return View(patient);
+       
+
         }
     }
 }

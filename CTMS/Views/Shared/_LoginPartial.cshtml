@@ -5,9 +5,6 @@
 @if (Request.IsAuthenticated)
 {
 
-    //var identity = (ClaimsIdentity)User.Identity;
-    //var name = identity.FindFirstValue(ClaimTypes.GivenName) ?? identity.GetUserName();
-
     var db = new ApplicationDbContext();
     var UserId = User.Identity.GetUserId();
     var CurrentUser = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
@@ -16,14 +13,25 @@
     {
         @Html.AntiForgeryToken()
 
-        <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right">
+       
+        @if (User.IsInRole(RoleName.Doctor))
+        {
+            <li>
+
+                @Html.ActionLink(CurrentUser.Name, "DoctorLayOut", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+        }
+        else
+        {
             <li>
 
                 @*@Html.ActionLink( CurrentUser.Name , "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
-                @Html.ActionLink( CurrentUser.Name , "About", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink(CurrentUser.Name, "PatientLayOut", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        </ul>
+        }
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
     }
 }
 else

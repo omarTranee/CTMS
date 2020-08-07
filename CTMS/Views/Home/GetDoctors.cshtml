@@ -6,10 +6,8 @@
 
 <h2>GetDoctors</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<h2>Search</h2>
+
+<h2>Search Results</h2>
 
 
 <div class="panel panel-default">
@@ -31,6 +29,8 @@
             <div class="col-md-3" style="width: 50%">
 
                 <h3 style="margin-top: 2px;">@subitem.Name</h3>
+                <br />
+                
 
                 <p>@subitem.DoctorInformation</p>
             </div>
@@ -41,7 +41,7 @@
 
                     <p>Button for Appoinment</p>
                     <br/>
-                    @Html.ActionLink("التفاصيل", "Details", new { DoctorID = subitem.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("BooKing", "Details", new { DoctorID = subitem.Id }, new { @class = "btn btn-primary" })
 
                 </div>
             </div>

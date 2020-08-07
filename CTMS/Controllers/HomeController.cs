@@ -62,6 +62,7 @@ namespace CTMS.Controllers
         }
 
         #region AppointmentActions
+        [Authorize]
 
         // GET: Appointments/Create
         public ActionResult CreateAppointment()
@@ -76,7 +77,7 @@ namespace CTMS.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // شوف هل يقصد بالبرامتر اللي ف الانكلود هل يقصد النام اللي ف 
+      
         // html helper
         public ActionResult CreateAppointment( Appointment appointment)
         {
@@ -93,9 +94,7 @@ namespace CTMS.Controllers
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "DoctorImage", appointment.DoctorId);
-            //ViewBag.PatientId = new SelectList(db.Patients, "Id", "Name", appointment.PatientId);
-
+           
             return View(appointment);
         }
 
@@ -108,11 +107,26 @@ namespace CTMS.Controllers
 
             return View();
         }
-        public ActionResult About()
+        public ActionResult DoctorLayOut()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
+        public ActionResult Chart()
+        {
+            return View();
+        }
+        public ActionResult Tables()
+        {
+            return View();
+        }
+        public ActionResult PatientLayOut()
+        {
+            return View();
+        }
+
+
+
     }
 }

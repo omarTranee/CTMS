@@ -4,18 +4,14 @@
     ViewBag.Title = "GetAppointmentForDoctors";
 }
 
-<h2>GetAppointmentForDoctors</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Doctor.Name)
-        </th>
+        </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.Patient.Name)
+            @Html.DisplayName("Patient Name")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.BookingDate)
@@ -34,9 +30,9 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Doctor.Name)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Patient.Name)
         </td>
@@ -53,9 +49,9 @@
             @Html.DisplayFor(modelItem => item.Paid)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("View", "DetailsPatient", new { id = item.Id }) |
+            @Html.ActionLink("Add", "AddNewPic", "PatientPic", routeValues: null, htmlAttributes: new { id = item.Id })|
         </td>
     </tr>
 }

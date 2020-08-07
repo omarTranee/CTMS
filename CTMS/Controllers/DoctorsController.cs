@@ -42,6 +42,11 @@ namespace CTMS.Controllers
             var UserId = User.Identity.GetUserId();
       
             var doctor = db.Doctors.SingleOrDefault(p => p.PhysicianId == UserId);
+            ViewBag.CountryName = db.Governorates.SingleOrDefault(g => g.Id == doctor.GovernorateId);
+            ViewBag.CityName = db.Cities.SingleOrDefault(c => c.Id == doctor.CityId);
+            
+            ViewBag.SpcialityName = db.Specialities.SingleOrDefault(s => s.Id == doctor.SpecialityId);
+            
             return View(doctor);
         }
 
@@ -94,6 +99,8 @@ namespace CTMS.Controllers
             ViewBag.SpecialityId = new SelectList(db.Specialities, "Id", "Name", doctor.SpecialityId);
             return View(doctor);
         }
+
+        /**************/
 
         // POST: Doctors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

@@ -251,7 +251,7 @@ namespace CTMS.Controllers
                         Address = model.Doctor.Address,
                         Gender =model.Doctor.Gender,
                         DoctorEmail=model.registerViewModel.Email,
-                        SpecialityId =model.SpecislityId,
+                        SpecialityId =model.Doctor.SpecialityId,
                         DoctorInformation=model.Doctor.DoctorInformation,
                         Price = model.Doctor.Price,
                         GovernorateId=model.GovernorateId,

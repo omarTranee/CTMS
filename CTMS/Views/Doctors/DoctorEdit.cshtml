@@ -1,17 +1,18 @@
 ﻿@model CTMS.Models.Doctor
 
 @{
-    ViewBag.Title = "Edit";
-
+    ViewBag.Title = "DoctorEdit";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>DoctorEdit</h2>
+
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Doctor</h4>
         <hr />
@@ -83,12 +84,12 @@
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.PhysicianId, "PhysicianId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("PhysicianId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PhysicianId, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.PhysicianId, "PhysicianId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("PhysicianId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PhysicianId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.CityId, "CityId", htmlAttributes: new { @class = "control-label col-md-2" })

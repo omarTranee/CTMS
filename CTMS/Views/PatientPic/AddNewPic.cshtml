@@ -1,0 +1,74 @@
+﻿@model IEnumerable<CTMS.Models.PatientPic>
+@{
+    ViewBag.Title = "AddNewPic";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
+
+
+
+@* ########### Add New Product Form Design ############## *@
+
+<div class="container">
+    <h2 class="text-center">Add New Rays</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form id="AddProduct" method="post" enctype="multipart/form-data" onsubmit="return AjaxPost(this)">
+                <label>Description</label><br />
+                <input type="text" id="Note" name="Note" class="form-control" /><br />
+
+
+                <label>Rays Image</label><br />
+                <input type="file" id="ImageUpload" name="ImageUpload" class="form-control" /><br />
+                <button class="btn btn-danger">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+@* ########### Display All Product ############## *@
+<div class="container">
+    <h2>PatientPic List</h2>
+    @foreach (var item in Model)
+    {
+
+    <div class="col-md-3" style="margin-bottom:25px">
+        <div class="thumbnail">
+            <div class="img-responsive" style="margin-bottom:20px">
+                <img src="~/AppFile/Images/@item.PicUrl" height="350" width="240" />
+            </div>
+            <div class="caption" style="border-top:3px solid #808080">
+                <h4><a href="#">@item.Note</a></h4>
+            </div>
+        </div>
+    </div>
+
+    }
+</div>
+
+@* ###########
+        Pass Add New Product Form Data From View to Controller
+        For Save It In Database
+    ############## *@
+
+<script>
+    function AjaxPost(formData) {
+        var ajaxConfig = {
+            type: "POST",
+            url: "./SaveData",
+            data: new FormData(formData),
+            success: function (result) {
+                alert(result);
+                window.location.href = "./AddNewPic";
+            }
+        }
+        if ($(formData).attr('enctype') == "multipart/form-data") {
+            ajaxConfig["contentType"] = false;
+            ajaxConfig["processData"] = false;
+        }
+        $.ajax(ajaxConfig);
+        return false;
+    }
+</script>
